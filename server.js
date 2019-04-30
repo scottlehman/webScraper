@@ -22,10 +22,14 @@ app.engine("handlebars", exphbs({
 }));
 app.set("view engine", "handlebars");
 
-// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
-
-mongoose.connect("mongodb://localhost/unit18Populater", {
-    useNewUrlParser: true
+mongoose.connect("mongodb://eyedrops:gtf0utnubz@ds119394.mlab.com:19394/heroku_mml8g4gg", { 
+    useNewUrlParse: true 
+}, function(error){
+    if(error) {
+        console.log(error);
+    } else{
+        console.log("Connected to database");
+    }
 });
 
 app.get("/scrape", function (req, res) {
