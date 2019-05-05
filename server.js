@@ -6,7 +6,7 @@ var axios = require("axios");
 var cheerio = require("cheerio");
 var db = require("./models");
 
-var PORT = 3000;
+var PORT = process.env.MONGODB_URI || 3000;
 
 mongoose.connect("mongodb://webscraper:gtf0utnubz@ds153093.mlab.com:53093/heroku_f2xzqbtd", {useNewUrlParser: true});
 
