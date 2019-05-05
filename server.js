@@ -1,29 +1,21 @@
 var express = require("express");
 var mongoose = require("mongoose");
-var logger = require("morgan");
 var exphbs = require("express-handlebars");
+var app = require("express");
 var axios = require("axios");
 var cheerio = require("cheerio");
-
 var db = require("./models");
 
-var PORT = process.env.PORT || 8000;
+var PORT = 3000;
+
+mongoose.connect("mongodb://webscraper:gtf0utnubz@ds153093.mlab.com:53093/heroku_f2xzqbtd", {useNewUrlParser: true});
+
 var app = express();
-
-app.use(logger("dev"));
-app.use(express.urlencoded({
-    extended: true
-}));
-app.use(express.json());
 app.use(express.static("public"));
-
-app.engine("handlebars", exphbs({
-    defaultLayout: "main"
-}));
-app.set("view engine", "handlebars");
-
-// Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+// app.engine("handlebars", exphbs({ defaultLayout: "main"}));
+// app.set("view engine", "handlebars");
 
 app.get("/scrape", function (req, res) {
 
@@ -32,7 +24,7 @@ app.get("/scrape", function (req, res) {
         var $ = cheerio.load(response.data);
         // console.log(response.data);
 
-        $("div").each(function (i, element) {
+        $("h2 a").each(function (i, element) {
             var result = {};
 
             result.title = $(this)
