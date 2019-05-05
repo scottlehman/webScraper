@@ -7,7 +7,7 @@ var cheerio = require("cheerio");
 
 var db = require("./models");
 
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 8000;
 var app = express();
 
 app.use(logger("dev"));
@@ -22,24 +22,20 @@ app.engine("handlebars", exphbs({
 }));
 app.set("view engine", "handlebars");
 
-mongoose.connect("mongodb://eyedrops:gtf0utnubz@ds119394.mlab.com:19394/heroku_mml8g4gg", { 
-    useNewUrlParse: true 
-}, function(error){
-    if(error) {
-        console.log(error);
-    } else{
-        console.log("Connected to database");
-    }
-});
+// Connect to the Mongo DB
+mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
 
 app.get("/scrape", function (req, res) {
-    axios.get("https://www.reddit.com/r/technology/new/").then(function (response) {
-        var $ = cheerio.load(response.data);
 
-        $("article h2").each(function (i, element) {
+    axios.get("http://www.digg.com").then(function (response) {
+        console.log(response);
+        var $ = cheerio.load(response.data);
+        // console.log(response.data);
+
+        $("div").each(function (i, element) {
             var result = {};
 
-            result.headline = $(this)
+            result.title = $(this)
                 .children("a")
                 .text();
             result.link = $(this)
