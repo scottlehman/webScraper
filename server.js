@@ -61,6 +61,6 @@ app.get("/articles", function (req, res) {
         });
 });
 
-app.listen(PORT, function () {
+app.listen(CONNECTION_STRING, function () {
     console.log("App running on port " + CONNECTION_STRING);
 })
