@@ -16,8 +16,8 @@ app.use(express.static("public"));
 app.use(logger("dev"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.engine("handlebars", exphbs({ defaultLayout: "main"}));
-app.set("view engine", "handlebars");
+// app.engine("handlebars", exphbs({ defaultLayout: "main"}));
+// app.set("view engine", "handlebars");
 
 app.get("/scrape", function (req, res) {
 
