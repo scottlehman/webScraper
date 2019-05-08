@@ -7,9 +7,13 @@ var axios = require("axios");
 var cheerio = require("cheerio");
 var db = require("./models");
 
-var PORT = process.env.MONGODB_URI || 3000;
+// var PORT = 3000;
 
-mongoose.connect("mongodb://webscraper:gtf0utnubz@ds153093.mlab.com:53093/heroku_f2xzqbtd", {useNewUrlParser: true});
+// mongoose.connect("mongodb://webscraper:gtf0utnubz@ds153093.mlab.com:53093/heroku_f2xzqbtd", {useNewUrlParser: true});
+
+// Connect to the Mongo DB
+const CONNECTION_STRING = process.env.MONGODB_URI || "mongodb://localhost/outside_scrape";
+mongoose.connect(CONNECTION_STRING, { useNewUrlParser: true });
 
 var app = express();
 app.use(express.static("public"));
@@ -58,5 +62,5 @@ app.get("/articles", function (req, res) {
 });
 
 app.listen(PORT, function () {
-    console.log("App running on port " + PORT);
+    console.log("App running on port " + CONNECTION_STRING);
 })
