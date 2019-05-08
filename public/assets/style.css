@@ -8,15 +8,25 @@ body {
   background-color: black;
 }
 
+.container {
+  width: 100vw;
+  font-size: 5rem;
+  text-align: center;
+}
+
+.header {
+  color: aliceblue;
+}
+
 #articles {
-    padding: 1rem 0rem;
-    text-align: center;
-    height: 60vh;
-    width: 60vw;
-    background: rgba(255,255,255,0.8);
-    overflow-y: scroll;
-    position: absolute;
-    bottom: 2%;
-    border-radius: 10px;
-    
+  padding: 1rem 0rem;
+  margin-left: 20%;
+  text-align: center;
+  height: 60vh;
+  width: 60vw;
+  background: rgba(255,255,255,0.8);
+  overflow-y: scroll;
+  position: absolute;
+  bottom: 2%;
+  border-radius: 10px;
 }
